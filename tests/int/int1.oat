@@ -1,0 +1,28 @@
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+pub fun main() -> Int {
+   let a: Int = 123;
+   let b := mut Int( ( 321 + 1 ).unwrap() );
+
+   printf( "%d\n".ptr(), a.value );
+   printf( "%d\n".ptr(), a );
+   f( b );
+   printf( "%d\n".ptr(), b );
+   #a.value = 123;
+   #f( a );
+   123
+}
+
+fun f( reb a: Int ) {
+   a = 1;
+}
+
+fun f[ T: Type ]( a: T ) {}
+
+
+gen f[ T ] {
+   struct[ T ](
+      a: T,
+   )[ T ]
+}

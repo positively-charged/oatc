@@ -1,0 +1,25 @@
+struct S(
+   reb a: Int,
+) implements {
+   pub fun f( &Self ) -> Int {
+      self.a
+   }
+
+   pub fun f2( &Self, a: Int ) -> Int {
+      self.a - a
+   }
+}
+
+pub fun main() -> Int {
+   let s := S( 123 );
+   s.f();
+   s.f2( 1 )
+}
+
+#[
+struct Machine implements {
+   pub fun run( &mut Machine, a: Str ) -> Int {
+      123
+   }
+}
+#]

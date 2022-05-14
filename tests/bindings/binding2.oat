@@ -1,0 +1,29 @@
+const A = 123;
+const B = 321;
+
+#[
+varian V {
+   V1 = A,
+   V2 = B,
+   V3( a: Int ),
+   V4 = struct( a: Int ),
+}
+
+let A = 123
+let B = 321
+let U =
+   | A: ( a: Str )
+   | B: ( a: Int )
+   | S: ( a: Int, b: Str )
+   ;
+#]
+
+
+fun f( p: Int ) -> Int {
+   return p;
+
+}
+
+pub fun main() -> Int {
+   return f( A );
+}

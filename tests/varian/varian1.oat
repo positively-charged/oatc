@@ -1,0 +1,42 @@
+fun f( a: Int|Str ) {
+
+}
+
+enum E1(
+   A( a: bundle( a: Int ) ),
+   Str( ... Str ),
+)
+
+enum E2( Int( ... Int ), Str( ... Str ) )
+
+fun f2( a: ( a: Int ) | Str ) {}
+
+fun f3() -> Int | Str | ( a: Int ) {}
+fun f3() -> E2 {}
+
+pub fun main() {
+   f2( ( a: 123 ) );
+   f2( "abc" );
+
+
+   f3() ~~ 123;
+   f3() ~~ "abc";
+   f3() ~~ ( a: 123 );
+
+   match f3() {
+      "abc" =>
+   }
+
+   match f3() {
+      Int( value ) {
+         println( "value: ", value );
+      }
+      Int( value ) { 123 }
+      Str( value ) {
+         println( "value: ", value );
+      }
+   }
+
+   virt bail();
+}
+

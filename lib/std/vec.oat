@@ -1,0 +1,5 @@
+import std/::types::*;
+import std/::internal::*;
+
+@[ known: BUNDLE_VEC ]
+pub struct Vec[ T ];

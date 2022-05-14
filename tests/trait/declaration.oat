@@ -1,0 +1,43 @@
+trait T (
+   pub a: Int,
+   pub b: Str,
+) implements {
+   fun f1( self: T ) {
+      self.a;
+      self.b;
+   }
+
+   fun f2( self: T );
+}
+
+struct S (
+   pub a: Int,
+   pub b: Str,
+   pub c: Bool,
+) implements {
+   fun f2( self: S ) {
+
+   }
+} implements T {
+   fun f1() {}
+   fun f2() {}
+}
+
+fun takesTrait( t: T ) {
+   t.f1();
+}
+
+fun f() {
+   {
+      let t: T = S( 123, "abc", true );
+      let s;
+      virt dump( t );
+      s = t;
+      virt dump( t );
+      #takesTrait( s );
+
+      #let s2 = &mut t.s;
+      drop s;
+   }
+   virt bail();
+}

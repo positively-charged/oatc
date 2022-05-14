@@ -1,0 +1,7 @@
+const A = 123;
+const B: Int = 321;
+
+fun f() {
+   println( A );
+   println( B );
+}

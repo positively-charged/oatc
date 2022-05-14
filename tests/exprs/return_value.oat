@@ -1,0 +1,4 @@
+pub fun main() {
+      let a = if true { 123 } else { 321 };
+
+}

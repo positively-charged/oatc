@@ -1,0 +1,9 @@
+import types::*;
+import internal::*;
+import vec::*;
+
+@[ internal_func: mod::INTERNFUNC_DUMP ]
+pub fun dump( *args: Vec[ Any ] );
+
+@[ internal_func: mod::INTERNFUNC_BAIL ]
+pub fun bail() -> Never;

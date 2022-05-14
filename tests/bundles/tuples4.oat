@@ -1,0 +1,21 @@
+#[
+
+   A tuple of one unnamed member decays to the element of the tuple.
+
+#]
+
+pub fun main() -> Int {
+   { let a: Int = ( 123 ); }
+   { let a: Int = ( ( 123 ) ); }
+   { let a: ( Int ) = 123; }
+   { let a: ( ( Int ) ) = 123; }
+   { let a: ( ( Int ) ) = ( 123 ); }
+   { let a: ( ( Int ) ) = ( ( 123 ) ); }
+   f( 123 );
+   f( ( 123 ) );
+   123
+}
+
+fun f( a: ( Int ) ) {}
+
+

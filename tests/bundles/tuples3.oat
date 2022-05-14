@@ -1,0 +1,68 @@
+
+struct S( reb a: Int, reb b: Int )
+
+pub fun main() -> Int {
+   let a := ( a: Int = 1, b := 2, c := 33 );
+   let b := { ( a := 1, b := 2, c := 33 ) };
+
+   let c := ( a.a + b( ( 1 + 1 ).unwrap() ) ).unwrap();
+
+   f2( a:="A" );
+   #f3( true );
+   #let c2 := f4( S( 1, 2 ) );
+
+   #( a := 123, b := 321 ).a = 123;
+
+   drop a;
+   drop b;
+
+   1
+
+   #f().b
+}
+
+fun f() -> ( a: Int, b: Int ) {
+   ( a := 1, b := 2 )
+}
+
+
+fun f2( a: Int|Str ) -> Int|Str {
+   drop a;
+   ""
+}
+
+fun f3( a: Int|Str|Bool ) {
+   drop a;
+}
+
+fun f4( a: Int|Str|Bool|S ) -> Int {
+   #if a == 123 { a + a };
+   let reb b: Int = 123;
+   if a ~~ S {
+      reb b = ( a.a + a.b ).unwrap();
+
+
+   }
+   drop a;
+   b
+}
+
+#[
+fun sum( numbers: Int * 10 ) {
+   let reb sum = 0;
+   for number in numbers {
+      sum := sum + number;
+   }
+   sum
+
+   #a = 123;
+   #reb a = 321;
+
+   #let reb x = 123;
+   #x := 123;
+
+
+
+   #( reb a = 123, reb b = 321 );
+}
+#]

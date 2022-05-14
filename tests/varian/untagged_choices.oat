@@ -1,0 +1,7 @@
+pub fun main() -> Int {
+   enum E(
+      A: ( a: Int ),
+   );
+   E( A := ( a := 1 ) );
+   123
+}

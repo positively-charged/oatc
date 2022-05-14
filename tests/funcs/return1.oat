@@ -1,0 +1,11 @@
+#[
+  Return simple value.
+#]
+
+pub fun main() -> Int {
+   return 23;
+}
+
+fun f() {
+   return;
+}

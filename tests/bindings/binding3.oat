@@ -1,0 +1,8 @@
+A := 123;
+B := 124;
+
+f := fun() -> Int { B };
+
+pub main := fun() -> Int {
+   f()
+};

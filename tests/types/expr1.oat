@@ -1,0 +1,132 @@
+const a: "" = "";
+
+pub fun main() -> Int {
+   #let a: Int( 1 ) = 123;
+  # :[ 123 ];
+   #:[ ( 123 ) ];
+   #:[ ( 123, ) ];
+  # :[ ( 123, 321 ) ];
+   struct S( a: Int );
+   let a: Int = 11;
+   let b: +120 = +120;
+   let c: -120 = -120;
+   let d: true | !false = true;
+   let e: "ABC" = "ABC";
+   let f: a | d = d;
+   let g: ( a | ( b | c ) | Str ) = "";
+   let h: &S = &S( 123 );
+   let i: &mut S = &mut S( 123 );
+   let j: ( ( a: Int( value: 2 ) ) | 1 ) = ( a := 2 );
+
+#[
+   typ A[ T: Int ] = Int( value: T );
+   A[ 123 ];
+   A[ 123 | 321 ];
+   A[ b ];
+
+   let d: a.a = 1;
+   let d: a.a[ 1 ] = 1;
+   let d: a.a[ Int ].b( Int, b: 321 ) = 1;
+   let d: &mut a.a[].b() = 1;
+   #virt dump( a );
+
+   fun f( x: Int ) -> ( x: 123, "abc" ) | ( x: 321, "cba" ) {}
+   fun f( x: Int ) -> x: 123 => "abc" | x: 321 => "cba" | else => Str {}
+
+   const Num =
+       | Neg: Int
+       | Pos: Int
+       | Zero: Int
+       ;
+
+   fun f( x: Int ) -> Bool {}
+
+   refine( x: Int ) -> Neg = x < 0;
+
+   const Neg => Int < 0
+
+   fun f( x: Neg | Pos | Zero ) ->
+      | "abc" => x: Neg
+      | "cba" => x: Pos
+      | Str => x: Zero {
+      if x == 0 {
+         return "aaa";
+      } else if x < 0 {
+         return "abc";
+      } else {
+         return "cba";
+      }
+   }
+      | true => 123
+      | 123 | 321 =>
+      | else => 321 {
+
+   }
+
+   let t1 = [ Int ];
+   let t2 = [ Str ];
+   let t3: struct t1 | let t2 = Int;
+#]
+
+   #[
+   [ Int * a ]
+
+   struct( 100 ) * 100
+
+   ( Int * 100 )( .. = 123 );
+
+   let t = [ Int ];
+   t * 100;
+
+   let a: t * 100;
+   Int * 100;
+
+   []
+
+   f( Int );
+   #]
+
+   123
+}
+
+#[
+fun f( t: Type( Int ) | Type( Str ) | Type ) {
+   const Type =
+      | Struct
+      | Never
+      ;
+   t ~~ Struct
+}
+
+struct MyUniverse[ T ] (
+   type: [ T ],
+)
+
+struct MyUniverse[ T ] implements Add = ( lside, rside ) =>
+
+fun f( a: MyUniverse[ Int ] - MyUniverse[ Str ] ) {
+
+}
+
+struct Type (
+   structure: Struct,
+   mutable: Bool,
+   ref: Bool,
+)
+
+struct Struct (
+   members: StructMember * N,
+)
+
+struct StructMember (
+   name: Str,
+   type: Type,
+)
+
+
+varian Type (
+   Struct: ( Struct ),
+   Varian: ( Varian ),
+
+)
+#]

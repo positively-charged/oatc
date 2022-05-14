@@ -1,0 +1,15 @@
+pub fun main() -> Int {
+   f( struct( pub a: Int, pub b: Str )( 123, "abc" ) );
+   f( ( a: Int = 123, b := "abc" ) );
+   f2( struct( pub _ := 123, pub _ := "abc" )() );
+   f2( ( _ := 123, _ := "abc" ) );
+   123
+}
+
+fun f( a: ( a: Int, b: Str ) ) {}
+fun f2( a: ( Int, Str ) ) {}
+
+struct AnonymousMembers(
+   _: Int = 123,
+   _: Int = 321,
+)

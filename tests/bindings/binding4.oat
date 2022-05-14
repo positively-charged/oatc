@@ -1,0 +1,79 @@
+pub fun main() -> Int {
+   struct S( a: Int );
+   let s: S( a: 123 ) = S( 123 );
+   let T: Type;
+   #f( 12 ) : ();
+   #let a: Int = f( 123 ): Int;
+   #100: Int;
+   s.a
+}
+
+pub f = \ a: Int, b: Int = {
+
+};
+
+fun f1( a: Int ) {}
+fun f2( a: Int( value: 123 ) ) {}
+
+fun f3( a: ( Int( value: 123 ) | Str )( "" ) ) {}
+fun f4( a: &mut ( Int, Int ) -> Int * 100 ) {
+   []( x, y ) = x + y
+}
+
+fun f() {
+   let t: ( Int, Str ) *
+}
+
+fun f( a: &mut Arr[ Int, N ] ) {
+   a.length()
+   ( Int ) + ( Str ): ( Int, Str )
+}
+
+#[
+fun f1( a: Value( type: Int, instance: () ) {}
+fun f2( a: Value( type: Int, instance: 123 ) {
+   valueof( 123 ).type == Int;
+   valueof( 123 ).instance == 123;
+   typeof( 123 ) == Int;
+   instanceof( 123 ) == IntInstance( 123 );
+}
+
+fun f() {
+   let Void = Struct( members = (), variant = true );
+   let Never = Type( structure: None );
+
+   let a = varian( a: Int, b: Str )( a: 123 );
+   let b = varian( a: Int, b: Str )( b: "abc" );
+   let b = varian( Int, Str )( 123 );
+
+   if a ~~ ( a: Int ) { a.a; }
+   if b ~~ ( b: Str ) { a.b; }
+   if c ~~ ( Int ) { a; }
+}
+#]
+
+#[
+struct S(
+   a: S2( ready = true ) | &S2( ready = true ),
+   b: [ 100 + 1 | 200 | "abc" ]
+
+)
+
+fun f() -> Int( 123 ) ^^ 0x1 << 12 | Int( 321 ) {
+   123
+}
+
+const BIT_FLAGS =
+|  const FLAG_A = 0x1 << 1
+|  const FLAG_B = 0x2 << 2
+;
+
+struct BIT_FLAGS (
+|  const FLAG_A = 0x1 << 1
+|  const FLAG_B = 0x2 << 2
+);
+
+fun f() -> Int | Err {
+
+}
+#]

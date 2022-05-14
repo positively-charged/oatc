@@ -1,0 +1,16 @@
+#[
+   Test: Declaration order does not matter
+#]
+
+fun f1() {
+   println( "f1() called" );
+}
+
+fun main() {
+   f1();
+   f2();
+}
+
+fun f2() {
+   println( "f2() called" );
+}

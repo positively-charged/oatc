@@ -1,0 +1,9 @@
+import types::*;
+import internal::*;
+import std/::vec::*;
+
+@[ internal_func: INTERNFUNC_PRINT ]
+pub fun print( *args: Vec[ Any ] );
+
+@[ internal_func: INTERNFUNC_PRINTLN ]
+pub fun println( *args: Vec[ Any ] );

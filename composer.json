@@ -1,0 +1,25 @@
+{
+    "name": "positively-charged/oat",
+    "description": "Oat compiler",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "PositivelyCharged\\Oat\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Positron",
+        }
+    ],
+    "repositories": [
+      {
+        "type": "path",
+        "url": "../../cmd-parser-php"
+      }
+    ],
+    "require": {
+      "positively-charged/cmd-parser-php": "*"
+    }
+}

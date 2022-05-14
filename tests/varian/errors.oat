@@ -1,0 +1,112 @@
+struct Error1( message: Str )
+struct Error2( message: Str, line: Int )
+
+struct Error[ T ]( err: T )
+enum Result[ T, E ](
+   Err( error: Error( E ) ),
+   Ok( value: T ),
+)
+
+#[
+typ Result[ T, E ] =
+   struct Err( error: Error( E ) ) |
+   struct Ok( value: T );
+#]
+
+fun f( value: Int ) -> Result[ Str,
+   struct Error1( message = "message1" ) |
+   struct Error2( message = "message2", line = 123 ) ] {
+   let a = if value == 123 {
+      "abc"
+   } elif value == 321 {
+      Error1( "error1" )
+   } else {
+      Error2( "error2" )
+   };
+   a
+}
+
+fun f2( value: Int ) -> Result[ Str, Error1 | Error2 ] {
+   if value == 123 {
+      "abc"
+   } elif value == 321 {
+      Error1( "error1" )
+   } else {
+      Error2( "error2" )
+   }
+}
+
+fun f3() -> Int | Error2 {
+   f( 123 ) on {
+      Error1 { 123 }
+      Str { 321 }
+   };
+   1
+}
+
+fun main() {
+   if f2( 123 )? !~ Error2( message, line ) {
+      virt dump( message );
+      virt dump( line );
+   }
+   if not 123 == 321 {
+
+   }
+
+   let a = f2( 321 ) on {
+      Error1( message ) {
+         println( "error: ", message );
+         return;
+      }
+      Error2( message, line ) {
+         println( line, ": error: ", message );
+         virt dump( message );
+         virt dump( line );
+         return;
+      }
+   };
+
+   #for .. {
+      match 123 {
+         123,
+         Int( value ) { }
+         Int( value: 2 ) { }
+         3 { }
+         default {
+
+         }
+      }
+   #}
+
+   virt bail();
+}
+
+
+#[
+pub fun isInstanceOf( instance: Type, type: Type ) -> Bool {
+   match self.describe( type ) {
+      DESC_ENUM { self.describe( instance ) == DESC_ENUM
+         and instance.enumeration == type.enumeration }
+      DESC_BUNDLE { self.describe( instance ) == DESC_BUNDLE
+         and self.isInstanceOfBundle( instance, type ) }
+      DESC_TRAIT { self.isInstanceOfTrait( instance, type ) }
+      DESC_PLACEHOLDER { self.isInstanceOfPlaceholder( instance, type ) }
+      DESC_PTR { match self.describe( instance ) {
+         DESC_PTR, DESC_NULLPTR { true }
+         default { false }
+      } }
+      default {
+         if self.describe( instance ) == DESC_ENUM
+            and self.describe( type ) == DESC_INT {
+            return self.describe( instance.enumeration.baseType ) == DESC_INT;
+         }
+
+         if self.describe( type ) == DESC_INT {
+            return self.isInstanceOfBundle( instance, type );
+         }
+
+         self.describe( instance ) == self.describe( type )
+      }
+   }
+}
+#]

@@ -1,0 +1,24 @@
+
+fun f() {
+   let int1: true = 123 == 123;
+   let int2: true = 123 != 321;
+   let int3: true = 123 < 321;
+   let int4: true = 123 <= 123;
+   let int5: true = 321 > 123;
+   let int6: true = 321 >= 321;
+   let int7: 444 = 123 + 321;
+   let int8: 123 = 444 - 321;
+   let int9: 200 = 10 * 20;
+   let int10: 13 = 200 / 15;
+   let int11: 5 = 200 % 15;
+   let int12: -123 = -123;
+   let int13: +123 = +123;
+
+   let bool1: true = true == true;
+   let bool2: true = true != false;
+
+   let str1: true = "abc" == "abc";
+   let str2: true = "abc" != "cba";
+
+   virt bail();
+}

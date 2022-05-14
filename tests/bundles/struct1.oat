@@ -1,0 +1,30 @@
+pub S := [
+   pub a: Int
+];
+
+pub main := fun() -> Int {
+   [ a: Str ]( "abc" );
+   [ Str ]( "abc" );
+   # [ Int | Str ]( 1 );
+
+   let a: S = S( 1 );
+
+   123
+};
+
+f := fun() -> [ a: Int, Int ] {
+   [ a: Int, Int ]
+};
+
+#[
+Player implements {
+   pub f := fun( self ) {
+
+   }
+}
+#]
+
+#[
+pub MyInt := Int;
+pub MyInt implements = Int.impls
+#]

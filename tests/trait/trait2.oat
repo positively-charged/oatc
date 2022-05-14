@@ -1,0 +1,9 @@
+trait T (
+   pub a: Int,
+   pub b: Str,
+) implements {
+   fun f1( self: T );
+   fun f2( self: T );
+}
+
+fun f( t: &T ) {}

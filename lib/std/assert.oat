@@ -1,0 +1,5 @@
+import types::*;
+import internal::*;
+
+@[ internal_func: INTERNFUNC_ASSERT ]
+pub fun assert( cond: Bool );

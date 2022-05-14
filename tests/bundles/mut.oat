@@ -1,0 +1,41 @@
+struct S( a: Int )
+
+#fun f2( s: &mut S ) {}
+
+fun f( s: mut S ) {
+   #virt dump( s );
+   if true {
+   let mut a: Int;
+   a = 3;
+   a = 6;
+   234;
+   } else {}
+   let mut b: Int;
+   b = 22;
+   b = 33;
+   b + 3;
+   #[
+   a = ( 2 + 4 );
+   1 + 2;
+   a * 2 + a - a;
+   a = ( { 333 } ) + ( { a = 444; a } );
+   a + a;
+   a + 4;
+   #]
+   #f2( &mut s );
+   drop( s );
+}
+
+fun f2( a: Int, b: Int ) {}
+
+pub fun main() {
+   #f( mut S( 123 ) );
+   let mut c: Int = 123;
+   while c > 0 {
+      f2( c + 321, 444 );
+      c = c - 1;
+   }
+   #virt dump( mut S( 123 ) );
+   #mut S( 123 ).a = 123;
+   #virt bail();
+}

@@ -1,0 +1,15 @@
+struct S( a: Int, b: Int )
+
+fun f( s: &S ) -> false {
+   s.a = 321;
+   false
+}
+
+#fun f( s: S( a: A( 123 ) ) ) {}
+
+fun main() {
+   let s = S( 123, 321 );
+   f( &s );
+   virt bail();
+   drop s;
+}

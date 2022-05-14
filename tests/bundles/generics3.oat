@@ -1,0 +1,33 @@
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+gen G[] { 124 + 1 }
+gen G2[ a: Int ] { a - a }
+gen G3[ a: Int, b: Int ] { a - b }
+gen G4[] { return :[ Int ]; }
+gen G5[ number: Int ] {
+   if number == 123 {
+      :[ Int ]
+   }
+   else {
+      :[ Str ]
+   }
+}
+
+pub fun main() -> Int {
+   let a := G[];
+   let b := G2[ 123 ];
+   printf( "%d\n".ptr(), G2[ 22 ] );
+   printf( "%d\n".ptr(), G3[ 22, 12 ] );
+   let c: G4[] = 123;
+   let d: G5[ 123 ] = 123;
+   let e: G5[ 321 ] = "abc";
+   f( 11 )
+}
+
+# FIX: Compiler checks parameter types before function bodies, so this function
+# fails to compile because the body of G4 is not yet resolved.
+fun f( a: G4[] ) -> G5[ 123 ] {
+   a
+}
+

@@ -1,0 +1,5 @@
+pub fun main() {
+   let a = { 123 };
+}
+
+pub fun f() {}

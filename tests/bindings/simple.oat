@@ -1,0 +1,8 @@
+pub fun main() {
+   let a = 123;
+   let b = true;
+   let c = "abc";
+   println( a );
+   println( b );
+   println( c );
+}

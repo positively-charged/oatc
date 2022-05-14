@@ -1,0 +1,27 @@
+fun f( as: Int ) -> Never {
+   1 + true;
+   let a = bail();
+   virt dump( a );
+   1
+}
+
+fun f2( a: Ss ) -> asd {
+   #virt bail();
+   return;
+}
+
+const A: Int = "";
+
+   struct B( a: Int )
+pub fun main() -> Int {
+
+   f2( 123 );
+    ( f( "" ) ~~ 123 or &123 ) and true ;
+   return ;
+}
+
+struct S {
+   &Player player1, player2;
+   &mut Parser parser;
+   Bool ready;
+}

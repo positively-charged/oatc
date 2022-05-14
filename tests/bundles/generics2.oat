@@ -1,0 +1,96 @@
+#pub gen G[] { 123
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+pub gen G[] { 123 }
+pub gen S[ T ] { struct( value: T ); Int }
+
+pub fun main() -> Int {
+   #printf( "%d\n".ptr(), G[] );
+   printf( "%d\n".ptr(), 123 );
+   return 123;
+   #S( 123 );
+
+   ( let a: Int, let b: Int ) = ( 1, 2 );
+   fun f( let a: Int, let b: Int ) {}
+   ( a: Int, b: Int ) = ( 1, 2 );
+
+   let ( mut a, mut b ) = ( 1, 2 );
+   if ( 1, 2 ) ~~ ( mut a, mut b );
+
+   fun let( mut a, b ) {
+      a = 123;
+   }
+
+   fun f( s: S( a: Int ) ) {}
+   fun f( let S( a, b ) ) {}
+
+   let S( b: S2( Int, Int ), a ) = S( 1, S2( 2, 3 ) );
+   let S( b: let S2( b, c ), a ) = S( 1, S2( 2, 3 ) );
+   let S( b: let S2( c: c ), a ) = S( 1, S2( 2, 3 ) );
+
+   if S( 1, S2( 2, 3 ) ) ~~ S( 1, S2( 2, 3 ) ) {}
+   if S( 1, S2( 2, 3 ) ) ~~ let S( a, let S2( b, c ) ) {}
+   if S( 1, S2( 2, 3 ) ) ~~ S( let a, S2( let b, c: let ) ) {}
+
+   let args = ( 1, 2, 3 );
+   f.apply( args );
+
+   #[
+   [ a: 111 ]
+   ( a: 111 )
+
+   const S = (
+      pub a: Int,
+      pub b: Str,
+   );
+
+   S( 123, "" );
+   #]
+}
+
+#[
+struct S (
+   a: Int,
+) implements {
+   fun f() {
+
+   }
+
+   gen f[ T ] {
+      fun( value: T ) -> T {
+         return value;
+      }
+   }
+}
+
+pub gen S[ T ] {
+   if T == Int {
+      S2( T );
+      struct (
+         value: T,
+      ) implements {
+         pub fun getValue( self ) -> T {
+            self.value
+         }
+      }
+   } else {
+      agent.err( "type must be of int type" )
+   }
+}
+
+pub fun S( T: Type ) {
+   if T == Int {
+      S2[ T ]
+      struct (
+         value: T,
+      ) implements {
+         pub fun getValue( self ) -> T {
+            return self.value;
+         }
+      }
+   } else {
+      err( "type must be of int type" )
+   }
+}
+#]

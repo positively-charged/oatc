@@ -1,0 +1,17 @@
+import types::*;
+
+pub const INTERNFUNC_NONE = 0;
+pub const INTERNFUNC_DIAG = 1;
+pub const INTERNFUNC_BAIL = 2;
+pub const INTERNFUNC_ASSERT = 3;
+pub const INTERNFUNC_PRINT = 4;
+pub const INTERNFUNC_PRINTLN = 5;
+pub const INTERNFUNC_STR_LEN = 6;
+pub const INTERNFUNC_DUMP = 7;
+
+pub const BUNDLE_NONE = 0;
+pub const BUNDLE_VEC = 1;
+pub const BUNDLE_BUNDLE = 2;
+pub const BUNDLE_BUNDLE_MEMBER = 3;
+pub const BUNDLE_BUNDLE_BUILDER = 4;
+pub const BUNDLE_TYPE = 5;

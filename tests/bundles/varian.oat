@@ -1,0 +1,12 @@
+enum E (
+   AA( a: struct( a: Int ) ),
+)
+
+fun f4() -> E {
+   AA( ( a: 123 ) )
+}
+
+pub fun main() {
+   virt bail();
+}
+

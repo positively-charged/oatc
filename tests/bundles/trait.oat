@@ -1,0 +1,34 @@
+trait Show {
+   fun show( self: Show );
+}
+
+bundle B {
+   a: Int,
+   b: Str,
+} implements {
+   fun f( self: B ) -> Str {
+      self.b
+   }
+
+   fun self( self: B ) -> B {
+      self
+   }
+
+   fun show( self: B ) {
+      println( "a: ", self.a );
+      println( "b: ", self.b );
+   }
+} implements Show {
+   fun show( self: B ) {
+      self.show();
+   }
+}
+
+fun f() {
+   virt let a = 321;
+   virt let b = B( 123, "abc" );
+   virt let c = Vec( 1, 2, 3 );
+   virt println( b, a );
+   virt b.show();
+   virt bail();
+}

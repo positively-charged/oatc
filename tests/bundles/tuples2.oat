@@ -1,0 +1,70 @@
+
+
+fun f() {
+   ( 123, "abc" );
+   ( a = 123, b = "abc" );
+   ( , a: Int = 123, b: Str = "abc" );
+
+   let ( a1, mut b1 ) = ( 1, 2 );
+   let ( a2: Int, mut b2: Str ) = ( 123, "abc" );
+   let ( a3, mut b3, c3: Int = 123 ) = ( 1, 2 );
+   let ( a4, mut b4 ) = ( 1, 2 );
+   let ( a5: Int, b5: Int, c5: Str = "" ) = ( 1, 2 );
+
+   let ( a6, *args6: Vec[ Int ] ) = ( 1, 2, 3 );
+
+   let a7 = 123;
+
+   let ( a8 = 123, b8 = 321 ) = ();
+   let a9 = 123, b9 = 321;
+
+   #let ( a8, *args8: Vec[ Int ] );
+   #let ( , a9: Int, let ( a9: Int, b9: Int ) );
+
+   #fun f1( a10: Int, c: ( a10: Int, b10: Int ) ) {}
+   #fun f2( a10: Int, c: let ( a10: Int, b10: Int ) ) {}
+
+   let ( a12 = 1 ) = 123;
+   #let a13, b13 = ( 1, 2 );
+
+   #f( 1 + ( a: Int ) );
+}
+
+#[
+fun f2( value: Bool, b: () ) -> ( a: Int, b: Str, c: Bool ) {
+   struct S( a: Int, b: Str, c: Bool );
+   S( a = 1, b = "", d = true )
+}
+
+fun f3() {
+   let a = f2( true, () );
+   a( 2 ) + 2;
+   virt dump( a );
+}
+
+fun f() {
+   fun getErr() -> ( msg: Str, line: Int ) {
+      ( "abc", 123 )
+   }
+
+   let ( msg: Str ): ( msg: Str ) = ( ( let s = getErr() ).msg, s:  );
+
+   let S( b: Int = s ): ( s: Int ) = S( b: Int = 123 );
+   let S( b = s ): ( s: Str ) = S( b = 123 );
+   let S( s ): ( s: Str ) = S( 123 );
+   let S( 0 ): ( Str ) = S( 123 );
+   let S( 0 ): Str = S( 123 );
+
+   let a = let ( b = a, a = b ): ( a: 321, b: 123 ) = ( a = 123, b = 321 );
+   let a = let ( 1 = 0, 0 = 1 ) = ( 123, 321 );
+   assert( a.a == 321 );
+}
+
+#]
+
+#[
+const C = 123;
+const T[ a: Int ] = {
+   123
+};
+#]

@@ -1,0 +1,36 @@
+struct A()
+struct B( a: A|Int, b = 555 )
+
+fun f( a: A, b: B( a: A ) ) -> B( a: A ) {
+   let c;
+   c = 3;
+   virt dump( c );
+   virt dump( 123 );
+   virt dump( b );
+   b.a = 123;
+   virt dump( b );
+   b.a = a;
+   virt dump( b );
+   b
+}
+
+fun f2( c: &B( a: A ) ) ? ( c: &B( a: 123 ) ) {
+   virt dump( c);
+   c.a = 123;
+   virt dump( c );
+}
+
+fun main() {
+   {
+      let a = A();
+      let b = B( a );
+      let c = f( A(), b );
+      c.b = 444;
+      virt dump( c );
+      f2( &c );
+      c.a + c.b;
+      virt dump( c );
+      drop c;
+   }
+   virt bail();
+}

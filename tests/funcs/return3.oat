@@ -1,0 +1,35 @@
+#[
+struct A( a: 123 )
+struct B( b: A )
+
+fun f2() -> B( b: A( a: 123 ) ) {
+   B( A( 321 ) )
+}
+#]
+
+struct S( s: S )
+
+fun f() -> 123 {
+   2
+}
+
+fun main() {
+   #let a: true = false;
+   virt bail();
+}
+#[
+const A = 123;
+const B = 321;
+
+const U = A | B;
+union U(
+   A = struct( value: 123 ),
+   B = struct( const value: 321 ),
+   Int,
+   Int
+)
+
+struct Enumeration[ Tagged: true ? Str : Null ](
+   pub name: Tagged
+)
+#]

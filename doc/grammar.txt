@@ -1,0 +1,674 @@
+Oat Grammar
+===============================================================================
+
+Special terminals:
+   E (Empty): Indicates the rule is optional
+
+-------------------------------------------------------------------------------
+
+module:
+   <module-item-list>
+   E
+
+module-item-list:
+   <module-item>
+   <module-item-list> <module-item>
+
+module-item:
+   <attributes> <visibility> <submodule>
+   <attributes> <visibility> <import>
+   <attributes> <visibility> <constant>
+   <attributes> <visibility> <union>
+   <attributes> <visibility> <enumeration>
+   <attributes> <visibility> <structure-item>
+   <attributes> <visibility> <trait>
+   <attributes> <visibility> <function>
+   <attributes> <visibility> <generic>
+   <attributes> <visibility> <let> ;
+
+binding:
+   <visibility> <identifier> : <type-request> ;
+   <visibility> <identifier> : <type-request> = <expression> ;
+   <visibility> <identifier> : = <expression> ;
+
+attributes:
+   <attribute-list>
+   E
+
+attribute-list:
+   <attribute>
+   <attribute-list> <attribute>
+
+attribute:
+   @ [ <identifier> ]
+   @ [ <identifier> : <argument-list> ]
+
+visibility:
+   pub
+   E
+
+submodule:
+   mod <identifier> ;
+
+import:
+   import ( <import-selection-list> ) ;
+   import ( <import-selection-list> , ) ;
+   import <import-selection> ;
+
+import-selection-list:
+   <import-selection>
+   <import-selection-list> , <import-selection>
+
+import-selection:
+   <import-alias> <path>
+   <import-alias> <path> :: ( <import-selection-list> )
+   <import-alias> <path> :: ( <import-selection-list> , )
+   <import-alias> <path> :: *
+
+import-alias:
+   <identifier> =
+   E
+
+path:
+   mod
+   <identifier>
+   <identifier> /
+   <path> :: <identifier>
+
+constant:
+   const <identifier> = <expression> ;
+   const <identifier> : <type-request> = <expression> ;
+
+   const <identifier> : = <expression> ;
+   const <identifier> : <type-request> = <expression> ;
+
+union:
+   union <identifier> { <variant-list> <trailing-comma> }
+
+variant-list:
+   <variant>
+   <variant-list> , <variant>
+
+variant:
+   <identifier> : <type-request>
+   <identifier> ( <parameter-list> )
+   <identifier> ( )
+   <identifier>
+
+enumeration:
+   enum <enumeration-name> <enumeration-base> { <enumerator-list> }
+   enum <enumeration-name> <enumeration-base> { <enumerator-list> , }
+
+enumeration-name:
+   <identifier>
+   <identifier> [ <type-parameter-list> ]
+   <identifier> [ ]
+   E
+
+enumeration-base:
+   : <type-request>
+   E
+
+enumerator-list:
+   <enumerator>
+   <enumerator-list> , <enumerator>
+
+enumerator:
+   <identifier> : <type-request>
+   <identifier> : <type-request> = <expression>
+   <identifier> : = <expression>
+   <identifier> ( <parameter-list> )
+   <identifier> ( )
+   <identifier>
+
+structure-item:
+   <structure>
+   <structure> <implementation-list>
+   struct <identifier> = <expression> ;
+   struct <identifier> ;
+
+structure:
+   struct <structure-like>
+   [ <structure-member-list> ]
+   [ <structure-member-list> , ]
+
+structure-like:
+   <structure-name> ( )
+   <structure-name> ( <structure-member-list> )
+   <structure-name> ( <structure-member-list> , )
+   <structure-name>
+
+structure-name:
+   <identifier>
+   E
+
+structure-member-list:
+   <structure-member>
+   , <structure-member>
+   <structure-member-list> , <structure-member>
+
+structure-member:
+   <visibility> <virtual> <mutable> <structure-member-name>
+      <structure-member-type> <default-initializer>
+   <visibility> <virtual> <mutable> <structure-member-name> : = <expression>
+
+structure-member-name:
+   <identifier> :
+   _ :
+   E
+
+structure-member-type:
+   : <type-request>
+   E
+
+default-initializer:
+   = <expression>
+   E
+
+implementation-list:
+   <implementation>
+   <implementation-list> <implementation>
+
+implementation:
+   implements { <implementation-item-list> }
+   implements <path> { <implementation-item-list> }
+   implements <path> [ <type-parameter-list> ] { <implementation-item-list> }
+   implements <path> [ ] { <implementation-item-list> }
+
+implementation-item-list:
+   <implementation-item>
+   <implementation-item-list> <implementation-item>
+
+implementation-item:
+   <visibility> <function>
+
+trait:
+   trait <structure-like>
+
+function:
+   <function-header> <block>
+
+function-header:
+   <function-qualifier> fun <identifier> ( <unpacked-tuple> ) <return-type>
+   <function-qualifier> fun <identifier> ( ) <return-type>
+
+function-qualifier:
+   virt
+   inline
+   E
+
+return-type:
+   -> <type-request>
+   E
+
+generic:
+   gen <identifier> [ <parameter-list> ] <block>
+   gen <identifier> [ ] <block>
+
+type-parameters:
+   [ <type-parameter-list> ]
+   [ ]
+
+type-parameter-list:
+   <type-parameter>
+   <type-parameter-list> , <type-parameter>
+
+type-parameter:
+   <identifier> : <type-request>
+   <identifier>
+
+type-expression:
+   <type-variant>
+
+type-variant:
+   <type-variant> | <type-prefix>
+   <type-prefix>
+
+type-prefix:
+   & <type-suffix>
+   & mut <type-suffix>
+   - <type-suffix>
+   + <type-suffix>
+   ! <type-suffix>
+   <type-suffix>
+
+type-suffix:
+   <type-suffix> [ <type-argument-list> ]
+   <type-suffix> [ <type-argument-list> , ]
+   <type-suffix> [ ]
+   <type-suffix> ( <type-argument-list> )
+   <type-suffix> ( <type-argument-list> , )
+   <type-suffix> ( )
+   <type-suffix> . <identifier>
+   <type-primary>
+
+type-primary:
+   <type-name-usage>
+   <type-tuple>
+   <integer-literal>
+   <bool-literal>
+   <string-literal>
+   <structure>
+
+type-name-usage:
+   <mutable> <identifier>
+
+type-tuple:
+   ( <type-argument-list> )
+   ( <type-argument-list> , )
+   ( )
+
+type-argument-list:
+   <type-argument>
+   , <type-argument>
+   <type-argument-list> , <type-argument>
+
+type-argument:
+   <identifier> : <type-expression>
+   <type-expression>
+
+type-request:
+   <union>
+   ? ( <refinement-list> )
+
+union:
+   <refined-type-option>
+   <union> | <refined-type-option>
+
+refined-type-option:
+   <important-type-option> ? ( <refinement-list> )
+   <important-type-option>
+
+refinement-list:
+   <refinement>
+   <refinement-list> , <refinement>
+
+refinement:
+   <identifier> : <type-request>
+
+important-type-option:
+   <borrowed-type-option> !
+   <borrowed-type-option>
+
+borrowed-type-option:
+   & <type-option>
+   <type-option>
+
+type-option:
+   <structure>
+   <type-tuple>
+   <mutable> <identifier>
+   <mutable> <identifier> ( <refinement-list> )
+   <mutable> <identifier> ( )
+   <mutable> <identifier> [ <type-argument-list> ]
+   <mutable> <identifier> [ ]
+   <function-type>
+   <integer-literal>
+   - <integer-literal>
+   + <integer-literal>
+   <bool-literal>
+
+function-type:
+   fun <identifier> ( <unpacked-tuple> ) <return-type>
+   fun <identifier> ( ) <return-type>
+
+statement-list:
+   <statement>
+   <statement-list> <statement>
+
+statement:
+   <import>
+   <expression-statement>
+
+expression-statement:
+   <assignment> ;
+   <tagged-expression> ;
+   <tagged-expression>
+
+assignment:
+   <identifier> = <patterned-expression>
+   reb <expression> = <logical>
+
+tagged-expression:
+   <tag> <patterned-expression>
+
+tag:
+   <identifier> :
+   E
+
+patterned-expression:
+   <expression> on { <match-arm-list> }
+   <expression> on { }
+   <expression>
+
+expression:
+   <virtual> <compound-expression>
+   <virtual> <simple-expression>
+
+virtual:
+   virt
+   E
+
+compound-expression:
+   <block>
+   <if>
+   <switch>
+   <while>
+   <for>
+
+simple-expression:
+   <let>
+   <jump>
+   <return>
+   <drop>
+   <assignment>
+
+let:
+   let ( <unpacked-tuple> ) = <patterned-expression>
+   let ( <unpacked-tuple> )
+   let   <unpacked-tuple>
+
+rebind:
+   reb <logical> = <expression>
+
+block:
+   { <statement-list> }
+   { }
+
+if:
+   if <expression> <block>
+   if <expression> <block> <elif-list>
+   if <expression> <block> <elif-list> <else>
+   if <expression> <block> <else>
+
+elif-list:
+   <elif>
+   <elif-list> <elif>
+
+elif:
+   elif <expression> <block>
+
+else:
+   else <block>
+
+switch:
+   switch <expression> <case-list>
+   <expression> switch <case-list>
+
+case-list:
+   <case>
+   <case-list> <case>
+
+case:
+   <case-group> <block>
+
+case-group:
+   <case-label>
+   <case-group> , <case-label>
+
+case-label:
+   case <expression>
+   default
+
+match-expression:
+   match <expression> { <match-body> }
+   match <expression> { }
+
+match-body:
+   <match-arm-list> default <block>
+   <match-arm-list>
+
+match-arm-list:
+   <match-arm>
+   <match-arm-list> <match-arm>
+
+match-arm:
+   <pattern-list> <block>
+
+pattern-list:
+   <pattern>
+   <pattern-list> , <pattern>
+
+pattern:
+   <identifier>
+   <identifier> ( <argument-list> )
+   <identifier> ( )
+   <integer-literal>
+
+while-expression:
+   while <expression> <block> <endfully>
+
+endfully:
+   endfully <block>
+   E
+
+for:
+   for <identifier> in <expression> <block> <endfully>
+   for <expression> <block> <endfully>
+
+jump:
+   break
+   continue
+
+return:
+   return <expression>
+   return ( <argument-list> )
+   return ( <argument-list> , )
+   return ( )
+   return
+
+drop:
+   drop <argument-list> ;
+
+condition:
+   <expression>
+
+constant-expression:
+   <logical>
+
+assignment:
+   <identifier> = <patterned-expression>
+   reb <logical> = <logical>
+   <logical>
+
+logical:
+   <logical>  or <logical-not>
+   <logical> and <logical-not>
+   <logical-not>
+
+logical-not:
+   not <logical-not>
+   <type-variant>
+
+type-variant:
+   <type-variant> | <comparison>
+   <comparison>
+
+comparison:
+   <comparison> == <addition>
+   <comparison> != <addition>
+   <comparison> <  <addition>
+   <comparison> <= <addition>
+   <comparison> >  <addition>
+   <comparison> >= <addition>
+   <addition>
+
+addition:
+   <addition> + <multiplication>
+   <addition> - <multiplication>
+   <multiplication>
+
+multiplication:
+   <multiplication> * <prefix>
+   <multiplication> / <prefix>
+   <multiplication> % <prefix>
+   <prefix>
+
+prefix:
+    - <prefix>
+    + <prefix>
+    & <prefix>
+   -- <prefix>
+   ++ <prefix>
+   <like>
+
+like:
+   <suffix> ~~ <pattern>
+   <suffix> !~ <pattern>
+   <suffix>
+
+pattern:
+   <name-pattern>
+   <call-pattern>
+   <integer-pattern>
+
+name-pattern:
+   <identifier>
+
+call-pattern:
+   <identifier> ( <pattern-list> )
+   <identifier> ( )
+
+pattern-list:
+   <pattern>
+   <pattern-list> , <pattern>
+
+integer-pattern:
+   <integer-literal>
+
+suffix:
+   <suffix> <subscript>
+   <suffix> <call>
+   <suffix> <call> = <expression>
+   <suffix> . <identifier>
+   <suffix> . <identifier> = <expression>
+   <suffix> ?
+   <primary>
+
+subscript:
+   <subscript-index> = <logical>
+   <subscript-index>
+
+subscript-index:
+   [ <argument-list> ]
+   [ <argument-list> , ]
+   [ ]
+
+call:
+   ( <argument-list> )
+   ( <argument-list> , )
+   ( )
+
+argument-list:
+   <argument>
+   <argument-list> , <argument>
+
+argument:
+   <expression>
+
+primary:
+   <function>
+   <name-usage>
+   <integer-literal>
+   <bool-literal>
+   <string-literal>
+   <structure>
+   <enumeration>
+   <trait>
+   <tuple>
+
+name-usage:
+   <mutable> <module-name> <identifier>
+   <mutable> <module-name> <identifier> [ <argument-list> ]
+   <mutable> <module-name> <identifier> [ ]
+
+mutable:
+   mut
+   E
+
+module-name:
+   <identifier> ::
+   E
+
+identifier:
+   [a-zA-Z_][a-zA-Z0-9_]*
+
+integer-literal:
+   <binary-literal>
+   <octal-literal>
+   <decimal-literal>
+   <hexadecimal-literal>
+
+bool-literal:
+   true
+   false
+
+string-literal:
+   "[^"]*"
+
+tuple:
+   ( <argument-list> )
+   ( <argument-list> , )
+   ( )
+
+argument-list:
+   <argument>
+   , <argument>
+   <argument-list> , <argument>
+
+argument:
+   <argument-name> : <type-request> = <expression>
+   <argument-name> : = <expression>
+   <expression>
+
+argument-name:
+   <identifier>
+   _
+
+unpacked-tuple:
+   <parameter-list>
+   <parameter-list> ,
+   <parameter-list> , <remaining-parameter>
+   <remaining-parameter>
+
+parameter-list:
+   <parameter>
+   , <parameter>
+   <parameter-list> , <parameter>
+
+parameter:
+   <rebindable> <identifier> : <type-request>
+   <rebindable> <identifier> : <type-request> = <expression>
+   <rebindable> <identifier> : = <expression>
+   <rebindable> <type-request>
+   let ( <unpacked-tuple> )
+
+rebindable:
+   reb
+   E
+
+parameter-type:
+   : <type-request>
+
+remaining-parameter:
+   * <parameter>
+   *
+
+// Newline character.
+nl:
+   \n
+   \r\n
+
+comment:
+   #[^\n]*
+
+multiline-comment:
+   #\[#[^#\]]*#\]
+
+terminator:
+   <nl>
+   ;
+
+trailing-comma:
+   ,
+   E

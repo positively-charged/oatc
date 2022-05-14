@@ -1,0 +1,25 @@
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+let A = 123;
+let S = struct( pub a: Int );
+let F = fun( a = 123 ) {};
+
+pub fun main() {
+   let a = 321;
+   a: printf( format: "%d\n".ptr(), arg1: a );
+   b: printf( "%d\n".ptr(), A );
+}
+
+fun f2() -> struct( b: Int ) {
+   ( a: 1, b: 2 )
+
+   #let a: Arr[ Int, 2, 3 ] = ( ( 1, 2, 3 ), ( 3, 2, 1 ) );
+}
+
+#[
+let names = Arr(
+   "abc",
+   "abc",
+);
+#]

@@ -1,0 +1,29 @@
+
+fun f() -> Int {
+   virt dump( 123 );
+   123
+}
+
+fun f2() -> "abc"|"cba" {
+   "abc"
+}
+
+pub fun main() {
+   let a: Str = "";
+   let b: 123|124|"abc" = 124 - 1 + 1 - 1;
+   let c: Int = 321;
+   #b + c;
+   virt dump( a, b, c );
+   let d;
+   d = b;
+   virt dump( b );
+   virt dump( d );
+
+   let e: true = 123 > 321 != true;
+   let f: Bool = e;
+   let g: Bool = f;
+
+   #addrof( 123 ) == addrof( 123 );
+
+   virt bail();
+}

@@ -1,0 +1,30 @@
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+fun f( a: Int, b := 123, c := "" ) {
+   printf( "%d\n".ptr(), a );
+   printf( "%d\n".ptr(), b );
+   printf( "%s\n".ptr(), c );
+}
+
+pub fun main() -> Int {
+   f( 1 );
+   f( a:= 1, c:= "abc" );
+   f( 1, 2, "abc" );
+
+   let reb c : Bool= false;
+      if ( c = true ) == true {}
+
+   let reb b: Int = 123;
+   ( a := 1, b := 321 ).b;
+
+   {
+      let reb a : Int = 0;
+      while a < 10 {
+         printf( "%d\n".ptr(), a + 1 );
+         a = ( a + 1 ).unwrap();
+      }
+   }
+
+   123
+}

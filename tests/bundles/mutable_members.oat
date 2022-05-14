@@ -1,0 +1,11 @@
+struct S (
+   pub mut a: Int,
+   pub b: Int,
+)
+
+pub fun main() -> Int {
+   let s = mut S( 123, 321 );
+   s.a = s.b;
+   s.b = 123;
+   return 123;
+}

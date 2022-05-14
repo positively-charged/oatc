@@ -1,0 +1,45 @@
+pub fun main() -> Int {
+   # let a: 3 * Int = ( Int * 300 )( 1, 2, 3, ..= 10: 0 );
+   let a = ( 1, a: 2, 3 );
+   #a.a + a( 2 );
+   drop a;
+   return 123;
+   #virt bail();
+
+   #let a = Vec( heap );
+   #a += ( 3, 2, 1 );
+}
+
+fun f( a: ( a: Int, b: Int ) ) {
+   drop a;
+}
+
+#[
+
+let null = ();
+let unin = ();
+
+fun f( a: ( a: Int, b: Int ) ) {
+
+}
+
+fun f( numbers: &mut ( 100 * Int ) ) { numbers.length }
+fun f( numbers: &mut * Int ) { numbers.length }
+fun f( numbers: mut Slice( Int ) { numbers.length }
+
+struct Heap( ... );
+fun alloc( heap: &mut Heap, type: Type ) -> fun( ... ) -> &'heap type;
+fun free( heap: &mut Heap,
+
+struct S (
+   heap: &mut Heap,
+   a: &'heap mut S,
+   b: &'heap mut S,
+)
+
+fun main( heap: mut Heap ) {
+   let a = heap.new( Int )( 123 );
+   heap.dealloc( a );
+}
+
+#]

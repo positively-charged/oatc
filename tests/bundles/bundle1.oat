@@ -1,0 +1,30 @@
+struct A()
+struct B( a: Int )
+struct C(
+   a: Int,
+   b: Str,
+)
+
+# Returning an empty tuple.
+fun f() -> struct() {
+   ()
+}
+
+# Returning a struct that is structurally compatible with the unnamed return
+# struct type.
+fun f2() -> struct() {
+   A()
+}
+
+fun f3() -> struct( a: Int, b: Str ) {
+   let a = ( a: 123, b: "abc" );
+   a
+}
+
+pub fun main() {
+   A();
+   B( 123 );
+   let c: struct( a: Int, b: Str ) = 1;
+   virt bail();
+}
+

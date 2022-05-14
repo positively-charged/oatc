@@ -1,0 +1,49 @@
+#[
+   Contains standard types.
+#]
+
+#[
+pub struct Bool(
+   value: __Bool
+) implements {
+   pub fun __eq( a: Bool, b: Bool ) -> Bool;
+   pub fun __neq( a: Bool, b: Bool ) -> Bool;
+}
+
+pub struct Int(
+   value: __Int,
+) implements {
+   pub fun __eq( a: Int, b: Int ) -> Bool;
+   pub fun __neq( a: Int, b: Int ) -> Bool;
+   pub fun __lt( a: Int, b: Int ) -> Bool;
+   pub fun __lte( a: Int, b: Int ) -> Bool;
+   pub fun __gt( a: Int, b: Int ) -> Bool;
+   pub fun __gte( a: Int, b: Int ) -> Bool;
+   pub fun __add( a: Int, b: Int ) -> Int;
+   pub fun __sub( a: Int, b: Int ) -> Int;
+   pub fun __mul( a: Int, b: Int ) -> Int;
+   pub fun __div( a: Int, b: Int ) -> Int;
+   pub fun __mod( a: Int, b: Int ) -> Int;
+   pub fun __minus( a: Int ) -> Int;
+   pub fun __plus( a: Int ) -> Int;
+   pub fun __pre_inc( a: Int ) -> Int;
+   pub fun __pre_dec( a: Int ) -> Int;
+}
+
+pub struct Str(
+   value: __Str
+) implements {
+   pub fun __eq( a: Str, b: Str ) -> Bool;
+   pub fun __neq( a: Str, b: Str ) -> Bool;
+   pub fun len( a: Str ) -> Int;
+   pub fun isEmpty( string: Str ) -> Bool {
+      string == ""
+   }
+}
+#]
+
+pub struct StrBuilder(
+   value: Int
+) implements {
+   pub fun append( builder: StrBuilder, string: Str );
+}

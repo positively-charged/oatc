@@ -1,0 +1,22 @@
+struct S(
+   virt a: Int,
+   virt b: Bool,
+   c: Int,
+)
+
+fun f() -> Int( value: 123 ) {
+   123
+}
+
+fun f2( a: Int( value: 123 ) ) {}
+fun f3( a: S( a: 321, b: true ) ) {}
+
+
+fun main() {
+   f2( f() );
+   let a = S( f(), false, f() );
+   a.a = 321;
+   a.b = true;
+   f3( a );
+   virt bail();
+}

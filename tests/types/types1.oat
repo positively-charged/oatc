@@ -1,0 +1,7 @@
+pub fun main() -> Int {
+   123
+}
+
+fun f() -> Bool {
+   :[ &mut Int ].borrowed
+}

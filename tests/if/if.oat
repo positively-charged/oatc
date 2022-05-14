@@ -1,0 +1,30 @@
+#[pub fun main() -> Int {
+
+   if true {
+      println( true );
+   }
+   else {
+      return 32;
+   }
+
+   return 123;
+}
+#]
+
+pub fun f() -> Int {
+   if false {
+      return 1;
+   }
+   else {
+      return 0;
+   }
+   return 123;
+  # return f2() + 1;
+   #17;
+}
+
+#[
+fun f2() -> Int {
+   return 123 + 321;
+}
+#]

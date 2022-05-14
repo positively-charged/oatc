@@ -1,0 +1,35 @@
+import std/::internal;
+
+@[ known: internal::BUNDLE_BUNDLE ]
+pub bundle Bundle {
+   pub name: Str,
+   pub members: Vec[ BundleMember ],
+   pub size: Int,
+}
+
+@[ known: internal::BUNDLE_BUNDLE_MEMBER ]
+pub bundle BundleMember {
+   pub name: Str,
+   #pub type: Type,
+   #pub visible: Bool,
+}
+
+@[ known: internal::BUNDLE_BUNDLE_BUILDER ]
+pub bundle BundleBuilder {
+   pub spec: Str,
+
+}
+
+pub enum TypeSpec {
+   TYPESPEC_INT,
+   TYPESPEC_BOOL,
+}
+
+@[ known: internal::BUNDLE_TYPE ]
+pub bundle Type {
+   pub spec: Int,
+} implements {
+   pub fun isBool( type: Type ) -> Bool {
+      type.spec == 1
+   }
+}

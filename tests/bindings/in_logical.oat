@@ -1,0 +1,68 @@
+#import "types";
+#import "compiler";
+
+#[
+fun simple( target: Int ) {
+   if ( let a = 123 ) == target {
+      echo "a is ", target, "\n";
+   } else {
+      echo "a is NOT ", target, "\n";
+   }
+}
+
+fun cond_and_true( target: Int ) {
+   if ( let a = 123 ) == target and true {
+      echo "a is ", target, "\n";
+   } else {
+      echo "a is NOT ", target, "\n";
+   }
+}
+
+fun cond_or_true( target: Int ) {
+   if ( let a = 123 ) == target or false {
+      echo "a is ", target, "\n";
+   } else {
+      echo "a is NOT ", target, "\n";
+   }
+}
+
+fun false_and_binding( target: Int ) {
+   if ( let a = 123 ) == target and ( let b = true ) and ( let c = true ) {
+      echo a, " is ", target, " and b is ", b, "\n";
+   } else {
+      echo a, " is NOT ", target, "\n";
+   }
+}
+#]
+
+fun false_or_binding( target: Int ) {
+   #if ( let a = 123 ) == target or ( ( let b = true ) or b == true ) or b == true or b == true  {
+   #[if ( let a = 123 ) == target or ( ( let b = 123 ) != target ) {
+      echo a, " is ", b, " or b is true\n";
+   } else {
+      echo a, " is NOT ", b, "\n";
+   #]}
+
+   ( not ( let a = true ) or ( let b = a ) ) and not ( let c = true );
+   a;
+
+   if ( let a = true ) or ( let b = true ) { a; }
+   if ( let a = true ) and ( let b = true ) { a; b; }
+    if ( let a = true ) and ( ( let b = a ) and ( let c = b ) ) { a; b; c; }
+   if ( let a = true ) or ( ( let b = a ) or ( let c = b ) ) or b == a { a; }
+   if ( not ( let a = true ) or ( let b = a ) ) and not ( let c = true ) { a; c; }
+   elif ( let a2 = true ) or ( let a3 = true ) { a; a2; }
+   else { a; a2; }
+   if ( let a = true ) or ( let b = a ) or ( let c = a ) { a;  }
+   if ( ( let a = true ) or ( let b = a ) or ( let c = a ) ) and ( let c = true ) { a; c; }
+   else { a;  }
+}
+
+fun f() {
+   #virt simple( 321 );
+   #virt cond_and_true( 123 );
+   #virt cond_or_true( 123 );
+   #virt false_and_binding( 123 );
+   #virt false_or_binding( 123 );
+   virt bail();
+}

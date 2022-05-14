@@ -1,0 +1,10 @@
+pub fun main() -> Int {
+   let a =  1 + 2;
+   let b = a + a + a;
+   b = b + b + b;
+   b + 1
+}
+
+fun f() -> Bool {
+   true
+}

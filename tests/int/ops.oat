@@ -1,0 +1,16 @@
+
+pub fun add( a: Int, b: Int ) {
+   let c = a + b;
+   let d = a + c + b;
+}
+
+pub fun main() -> Int {
+   f() + 1
+}
+
+pub fun f() -> Int {
+   let a = 123;
+   let b = 3;
+   let c = a + b;
+   c
+}

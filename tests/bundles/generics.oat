@@ -1,0 +1,29 @@
+struct S[ T ](
+   a: T,
+)
+
+fun f2( s: &S[ Bool ] ) {}
+fun f3( s: &S[ &S[ Int ] ] ) {}
+fun f4[ T ]( a: Int ) {}
+
+fun f() {
+   let s: S[ Int ];
+   virt dump( S[ Int ] );
+   virt dump( S[ Vec[ Str ] ] );
+   virt dump( S[ Bool[] ]( true ) );
+   f2( &S[ Bool[] ]( true ) );
+   f4[ Str ]( 123 );
+   virt bail();
+}
+
+#[
+
+class Value {
+   public function describe(): int;
+}
+
+class Type {
+   public function isInstanceOfSelf( Value $value ): bool {}
+}
+
+#]

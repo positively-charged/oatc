@@ -1,0 +1,20 @@
+fun return_arg( x: Int ) -> x {
+   let a;
+   a = x;
+   a
+}
+
+fun greater( x: Int, y: Int ) -> x | y {
+   if x > y {
+      return x;
+   } else {
+      return y;
+   }
+}
+
+fun main() {
+   return_arg( 123 );
+   # greater( let x = 123, let y = 321 ) ~~ y;
+   greater( let x = 123, let y = 321 );
+   virt bail();
+}

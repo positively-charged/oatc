@@ -1,0 +1,11 @@
+#[
+  Return simple value from another function.
+#]
+
+pub fun main() -> Int {
+   return f( 11, 22 );
+}
+
+fun f( a: Int, b: Int ) -> Int {
+   return a + a - 1;
+}

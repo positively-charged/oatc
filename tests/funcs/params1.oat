@@ -1,0 +1,20 @@
+
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+fun f( mut a = "abc" ) {
+   a = "";
+   printf( "%s\n".ptr(), a );
+   let b: true = true;
+   let c: Str = "";
+   let d: struct() = f2();
+   d + 1;
+}
+
+fun f2() {}
+
+pub fun main() -> Int {
+   f();
+   virt dump( 1 );
+   return 2;
+}

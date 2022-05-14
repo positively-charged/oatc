@@ -1,0 +1,47 @@
+const UNREP = 1000;
+
+pub fun main() {
+   let a: Int = 123;
+   virt dump( a );
+   if a == 123 {
+      virt dump( a );
+      let c: 123 = a;
+   }
+   virt dump( a );
+}
+
+
+enum E ( A )
+fun f( a: Int ) {
+   let b: Int = a + E;
+   let c = b == UNREP;
+   virt dump( b );
+   virt dump( c );
+   if c {
+      virt dump( b );
+   }
+   virt dump( b );
+   virt bail();
+
+#[
+   struct S();
+   let s: typeof( S ) = S;
+   virt assert( s == S );
+   virt assert( s.name == S.name );
+#]
+}
+
+#[
+fun f( s of mut S, a of Int ) {
+   let a = 123 of Int;
+   let b = 321 of Int;
+   if s ~~ S( let a, b + 123 ) {
+
+   }
+}
+
+fun f() {
+   let a = Vec( 1, 2, 3 );
+   if a ~~ Vec( a, b, c ) {}
+}
+#]

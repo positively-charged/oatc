@@ -1,0 +1,86 @@
+
+
+
+pub fun main() -> Int {
+   1 + sum()
+}
+
+fun sum() -> Int {
+   let sum = 0;
+   let i = 0;
+   while i < 10 {
+      sum = sum + i + 1;
+      i = i + 1;
+   }
+
+   sum
+}
+#[
+pub fun main() -> Int {
+   let a = 1;
+   let c = true;
+   while c {
+      while c {
+         c = false;
+      }
+      a = a + 2;
+      #[
+      if a == 10 {
+         break;
+      }
+      #]
+      c = false;
+   }
+   a
+}
+#]
+
+#[
+fun f() -> Bool {
+   true == false
+}
+
+#]
+
+#[
+enum Maybe[ T ] {
+   Some( value: T ),
+   None,
+}
+
+enum Bool {
+   False,
+   True
+}
+
+import Bool = RealBool;
+import { F = False, T = True } from Bool;
+
+fun f() {
+   let false = 123;
+   let done = False;
+   while done {
+      if isDone() {
+         done = True;
+      }
+   }
+}
+
+bundle B {
+   a: Int,
+} implements {
+   fun f( self ) {
+      let self = 123;
+      self::parent.
+   }
+
+   fun new() -> Self {
+      Self( 123 );
+      __bundle__.name;
+      for member in __bundle__.members {
+         member.name;
+         member.type.name;
+      }
+   }
+}
+#]

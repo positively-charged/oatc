@@ -1,0 +1,19 @@
+const EXIT_FAILURE = 1;
+
+struct S( a: Str, b: Int )
+
+@[ foreign ]
+pub fun printf( format: ConstPtr[ char ], * ) -> i32;
+
+pub fun main() -> Int {
+   let mut s;
+   s = S( "AA", 123 );
+   show_s( &s );
+   drop s;
+   return EXIT_FAILURE;
+}
+
+fun show_s( s: S ) {
+   printf( "abc %s %d\n".ptr(), s.a, s.b );
+   drop s;
+}

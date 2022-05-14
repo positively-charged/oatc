@@ -1,0 +1,33 @@
+fun f( p: Ptr[ Ptr[ Int ] ] ) {
+   p[ 1 ][ 2 ] = p[ 3 ][ 4 ] = 123;
+   p[] == p[];
+   p != p;
+   p < p;
+   p <= p;
+   p > p;
+   p >= p;
+   p + 1;
+   1 + p;
+   p - 1;
+   p - p;
+   ++p[];
+
+   drop p;
+}
+
+fun f2( a: Int ) -> Int {
+   if a < 0 {
+      return abs( a + 1 );
+   } else {
+      return 123;
+   }
+}
+
+@[ foreign ]
+pub fun abs( value: i32 ) -> i32;
+@[ foreign ]
+pub fun printf( format: Ptr[ char ], * ) -> i32;
+
+pub fun main() -> Int {
+   return f2( -2 );
+}

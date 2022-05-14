@@ -1,0 +1,17 @@
+pub fun main() -> Int {
+   varian V( A: struct( a: Int ) )( A := ( a := 1 ) );
+   V( A := ( a := 1 ) );
+   V::A;
+   123
+}
+
+pub fun f() -> Result[ Int, Err ] {
+   if true {
+      Result( Ok := 123 )
+      Result( Result::Ok( 123 ) )
+      Result::Ok( 123 )
+   } else {
+      Result( Err := Err( "some error" ) )
+      Result::Err( "some error" )
+   }
+}
